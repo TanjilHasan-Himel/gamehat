@@ -27,7 +27,14 @@ const router = createBrowserRouter([
       { path: "/forgot-password", element: <ForgotPassword /> },
       { path: "/my-profile", element: <MyProfile /> },
       { path: "/update-profile", element: <UpdateProfile /> },
-      { path: "/game/:id", element: <GameDetails /> },
+      {
+  path: "/game/:id",
+  element: (
+    <PrivateRoute>
+      <GameDetails />
+    </PrivateRoute>
+  ),
+},
       { path: "/my-profile", element: <PrivateRoute><MyProfile /></PrivateRoute> },
 { path: "/update-profile", element: <PrivateRoute><UpdateProfile /></PrivateRoute> },
 { path: "/game/:id", element: <PrivateRoute><GameDetails /></PrivateRoute> },
