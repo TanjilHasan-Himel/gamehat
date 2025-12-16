@@ -107,7 +107,7 @@ export default function Home() {
           <div>
             <h2 className="text-2xl md:text-3xl font-black">Popular Games</h2>
             <p className="text-gray-400 mt-1">
-              Top picks sorted by rating (from your JSON data)
+              Top picks sorted by rating
             </p>
           </div>
           <Link
