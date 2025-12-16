@@ -1,0 +1,82 @@
+[
+  {
+    "id": "1",
+    "title": "PlayerUnknown's Battlegrounds (PUBG)",
+    "coverPhoto": "https://images.unsplash.com/photo-1542751110-97427bbecf20?q=80&w=1200&auto=format&fit=crop",
+    "category": "FPS",
+    "downloadLink": "https://www.pubgmobile.com/en-US/home.shtml",
+    "description": "A fast-paced battle royale where strategy, survival, and teamwork decide victory on dynamic maps.",
+    "ratings": "4.6",
+    "developer": "Krafton"
+  },
+  {
+    "id": "2",
+    "title": "Hades",
+    "coverPhoto": "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1200&auto=format&fit=crop",
+    "category": "Action Roguelike",
+    "downloadLink": "https://www.supergiantgames.com/games/hades/",
+    "description": "Fight out of the Underworld as Zagreus with fast combat, build variety, and storytelling depth.",
+    "ratings": "4.9",
+    "developer": "Supergiant Games"
+  },
+  {
+    "id": "3",
+    "title": "Stardew Valley",
+    "coverPhoto": "https://images.unsplash.com/photo-1614294148960-9aa7405e9a2b?q=80&w=1200&auto=format&fit=crop",
+    "category": "Simulation",
+    "downloadLink": "https://www.stardewvalley.net/",
+    "description": "Build your farm, make friends, explore caves, and create the cozy life you want.",
+    "ratings": "4.8",
+    "developer": "ConcernedApe"
+  },
+  {
+    "id": "4",
+    "title": "Celeste",
+    "coverPhoto": "https://images.unsplash.com/photo-1552820728-8b83bb6b773f?q=80&w=1200&auto=format&fit=crop",
+    "category": "Platformer",
+    "downloadLink": "https://www.celestegame.com/",
+    "description": "A precision platformer with a heartfelt story about overcoming challenges—one step at a time.",
+    "ratings": "4.7",
+    "developer": "Maddy Makes Games"
+  },
+  {
+    "id": "5",
+    "title": "Hollow Knight",
+    "coverPhoto": "https://images.unsplash.com/photo-1556438064-2d7646166914?q=80&w=1200&auto=format&fit=crop",
+    "category": "Metroidvania",
+    "downloadLink": "https://www.hollowknight.com/",
+    "description": "Explore a vast ruined kingdom, master tight combat, and uncover deep lore in a haunting world.",
+    "ratings": "4.9",
+    "developer": "Team Cherry"
+  },
+  {
+    "id": "6",
+    "title": "Among Us",
+    "coverPhoto": "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1200&auto=format&fit=crop",
+    "category": "Party",
+    "downloadLink": "https://www.innersloth.com/games/among-us/",
+    "description": "Social deduction chaos: complete tasks, find impostors, or deceive everyone to win.",
+    "ratings": "4.3",
+    "developer": "Innersloth"
+  },
+  {
+    "id": "7",
+    "title": "Dead Cells",
+    "coverPhoto": "https://images.unsplash.com/photo-1522120692087-2c1f9b1d6aa7?q=80&w=1200&auto=format&fit=crop",
+    "category": "Action",
+    "downloadLink": "https://dead-cells.com/",
+    "description": "Roguelite action with responsive combat, brutal runs, and constant progression.",
+    "ratings": "4.6",
+    "developer": "Motion Twin"
+  },
+  {
+    "id": "8",
+    "title": "Valorant",
+    "coverPhoto": "https://images.unsplash.com/photo-1612287230202-1ff1d85d1bdf?q=80&w=1200&auto=format&fit=crop",
+    "category": "FPS",
+    "downloadLink": "https://playvalorant.com/",
+    "description": "Tactical 5v5 shooter with agents, abilities, and crisp gunplay—team strategy matters.",
+    "ratings": "4.4",
+    "developer": "Riot Games"
+  }
+]
