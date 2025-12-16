@@ -38,10 +38,21 @@ export default function Register() {
       await updateUserProfile(name, photoURL);
       navigate("/");
     } catch (error) {
-      setErr("Registration failed. Try a different email.");
-    } finally {
-      setLoading(false);
-    }
+  console.log(error.code, error.message);
+
+  if (error.code === "auth/email-already-in-use") {
+    setErr("This email is already registered. Please login instead.");
+  } else if (error.code === "auth/invalid-email") {
+    setErr("Invalid email address.");
+  } else if (error.code === "auth/weak-password") {
+    setErr("Weak password. Use at least 6 characters.");
+  } else if (error.code === "auth/operation-not-allowed") {
+    setErr("Email/Password sign-in is not enabled in Firebase.");
+  } else {
+    setErr(error.message);
+  }
+}
+
   };
 
   const handleGoogle = async () => {
