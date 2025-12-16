@@ -1,16 +1,27 @@
-# React + Vite
+# GameHat - A Game Library
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+GameHat is an engaging online game library for discovering and supporting game developers. Users can browse games, view detailed information, and install/download from official sources.
 
-Currently, two official plugins are available:
+## Live URL
+https://gamerhat.netlify.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key Features
+- Urban / neon themed responsive UI (mobile, tablet, desktop)
+- Home page with banner slider (3 slides), popular games (sorted by rating), and newsletter section
+- Games list with cards and navigation to details
+- Protected Game Details page (redirects to login if not authenticated)
+- Firebase Authentication:
+  - Email/Password login & registration
+  - Google sign-in
+  - Logout button + conditional navbar (profile picture shown when logged in)
+- Forgot Password feature (prefilled email + redirect to Gmail)
+- My Profile + Update Information (name + photo URL)
+- Dynamic document title (GameHat style per route)
+- SPA routing support on Netlify (reload doesn’t break routes)
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## NPM Packages Used
+- react
+- react-router-dom
+- firebase
+- framer-motion
+- tailwindcss

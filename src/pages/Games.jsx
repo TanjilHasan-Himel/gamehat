@@ -12,6 +12,7 @@ export default function Games() {
       .then((data) => setGames(data))
       .catch(() => setGames([]));
   }, []);
+  
 
   const filtered = useMemo(() => {
     const query = q.trim().toLowerCase();
