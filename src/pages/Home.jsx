@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 export default function Home() {
   const slides = useMemo(
@@ -10,13 +11,13 @@ export default function Home() {
         img: "https://images.unsplash.com/photo-1542751110-97427bbecf20?q=80&w=1600&auto=format&fit=crop",
       },
       {
-        title: "Urban vibes. Neon energy.",
-        subtitle: "A game library inspired by Epic-style experience.",
+        title: "Neon streets. Urban energy.",
+        subtitle: "A vibrant library experience built for game lovers.",
         img: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?q=80&w=1600&auto=format&fit=crop",
       },
       {
         title: "Your next obsession is one click away.",
-        subtitle: "Browse by category, rating, and developer.",
+        subtitle: "Browse categories, ratings, and developer highlights.",
         img: "https://images.unsplash.com/photo-1511512578047-dfb367046420?q=80&w=1600&auto=format&fit=crop",
       },
     ],
@@ -25,6 +26,10 @@ export default function Home() {
 
   const [active, setActive] = useState(0);
   const [games, setGames] = useState([]);
+
+  useEffect(() => {
+    document.title = "Gamehub | Home";
+  }, []);
 
   useEffect(() => {
     const t = setInterval(() => {
@@ -46,32 +51,66 @@ export default function Home() {
 
   return (
     <div className="space-y-12">
-      {/* HERO / SLIDER */}
-      <section className="relative overflow-hidden rounded-2xl border border-white/10">
-        <div className="absolute inset-0">
+      {/* HERO / SLIDER (Animated) */}
+      <motion.section
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45 }}
+        className="relative overflow-hidden rounded-2xl border border-white/10"
+      >
+        {/* Background image with fade animation on slide change */}
+        <motion.div
+          key={active}
+          initial={{ opacity: 0.4, scale: 1.02 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+          className="absolute inset-0"
+        >
           <img
             src={slides[active].img}
             alt="banner"
             className="w-full h-full object-cover opacity-60"
           />
           <div className="absolute inset-0 bg-gradient-to-r from-[#070a10] via-[#070a10]/70 to-transparent" />
-        </div>
+        </motion.div>
 
         <div className="relative p-6 md:p-12 min-h-[320px] flex flex-col justify-center">
-          <p className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-green-300">
+          <motion.p
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.05, duration: 0.35 }}
+            className="inline-flex items-center gap-2 text-xs font-bold tracking-widest uppercase text-green-300"
+          >
             <span className="w-2 h-2 rounded-full bg-green-400" />
             GAMEHUB LIBRARY
-          </p>
+          </motion.p>
 
-          <h1 className="mt-4 text-3xl md:text-5xl font-black leading-tight">
+          <motion.h1
+            key={`title-${active}`}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35 }}
+            className="mt-4 text-3xl md:text-5xl font-black leading-tight"
+          >
             {slides[active].title}
-          </h1>
+          </motion.h1>
 
-          <p className="mt-3 text-gray-300 max-w-2xl">
+          <motion.p
+            key={`sub-${active}`}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, delay: 0.05 }}
+            className="mt-3 text-gray-300 max-w-2xl"
+          >
             {slides[active].subtitle}
-          </p>
+          </motion.p>
 
-          <div className="mt-6 flex flex-wrap gap-3">
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.35, delay: 0.08 }}
+            className="mt-6 flex flex-wrap gap-3"
+          >
             <Link
               to="/games"
               className="px-5 py-3 rounded-lg bg-green-400 text-black font-bold hover:opacity-90 transition"
@@ -84,9 +123,9 @@ export default function Home() {
             >
               Explore More
             </Link>
-          </div>
+          </motion.div>
 
-          {/* dots */}
+          {/* Dots */}
           <div className="mt-8 flex gap-2">
             {slides.map((_, i) => (
               <button
@@ -95,20 +134,19 @@ export default function Home() {
                 className={`h-2 rounded-full transition-all ${
                   active === i ? "w-10 bg-green-400" : "w-4 bg-white/20"
                 }`}
+                aria-label={`slide-${i + 1}`}
               />
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* POPULAR GAMES */}
       <section>
         <div className="flex items-end justify-between gap-4">
           <div>
             <h2 className="text-2xl md:text-3xl font-black">Popular Games</h2>
-            <p className="text-gray-400 mt-1">
-              Top picks sorted by rating
-            </p>
+            <p className="text-gray-400 mt-1">Top picks sorted by rating</p>
           </div>
           <Link
             to="/games"
@@ -120,64 +158,86 @@ export default function Home() {
 
         <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-5">
           {popular.map((g) => (
-            <Link
+            <motion.div
               key={g.id}
-              to={`/game/${g.id}`}
-              className="group rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:bg-white/10 transition"
+              whileHover={{ scale: 1.02 }}
+              transition={{ duration: 0.2 }}
             >
-              <div className="h-44 overflow-hidden">
-                <img
-                  src={g.coverPhoto}
-                  alt={g.title}
-                  className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
-                />
-              </div>
-              <div className="p-4">
-                <div className="flex items-center justify-between gap-2">
-                  <h3 className="font-black">{g.title}</h3>
-                  <span className="text-xs px-2 py-1 rounded-md bg-green-400 text-black font-bold">
-                    {g.ratings}
-                  </span>
+              <Link
+                to={`/game/${g.id}`}
+                className="block group rounded-2xl overflow-hidden border border-white/10 bg-white/5 hover:bg-white/10 transition"
+              >
+                <div className="h-44 overflow-hidden">
+                  <img
+                    src={g.coverPhoto}
+                    alt={g.title}
+                    className="w-full h-full object-cover group-hover:scale-105 transition duration-300"
+                  />
                 </div>
-                <p className="text-gray-400 text-sm mt-2 line-clamp-2">
-                  {g.description}
-                </p>
-                <p className="text-xs text-gray-500 mt-3">
-                  {g.category} • {g.developer}
-                </p>
-              </div>
-            </Link>
+                <div className="p-4">
+                  <div className="flex items-center justify-between gap-2">
+                    <h3 className="font-black">{g.title}</h3>
+                    <span className="text-xs px-2 py-1 rounded-md bg-green-400 text-black font-bold">
+                      {g.ratings}
+                    </span>
+                  </div>
+                  <p className="text-gray-400 text-sm mt-2 line-clamp-2">
+                    {g.description}
+                  </p>
+                  <p className="text-xs text-gray-500 mt-3">
+                    {g.category} • {g.developer}
+                  </p>
+                </div>
+              </Link>
+            </motion.div>
           ))}
         </div>
       </section>
 
       {/* NEWSLETTER */}
-      <section className="rounded-2xl border border-white/10 bg-gradient-to-r from-white/5 to-transparent p-6 md:p-10">
-        <h3 className="text-2xl font-black">Get weekly game drops</h3>
-        <p className="text-gray-400 mt-2 max-w-2xl">
-          Subscribe to our newsletter for new indie releases, top-rated picks, and developer highlights.
-        </p>
+      <section>
+        <div className="rounded-2xl border border-white/10 bg-white/5 p-6 md:p-10">
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+            <div>
+              <p className="text-xs font-bold tracking-widest text-green-300">
+                NEWSLETTER
+              </p>
+              <h2 className="text-3xl font-black mt-2">
+                Get fresh game drops in your inbox
+              </h2>
+              <p className="text-gray-400 mt-2 max-w-xl">
+                Weekly indie highlights, deals, and dev stories. No spam.
+                Unsubscribe anytime.
+              </p>
+            </div>
 
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            alert("Subscribed! (UI demo)");
-          }}
-          className="mt-5 flex flex-col sm:flex-row gap-3"
-        >
-          <input
-            type="email"
-            required
-            placeholder="Enter your email"
-            className="w-full sm:flex-1 px-4 py-3 rounded-lg bg-[#0b0f17] border border-white/10 outline-none focus:border-green-400"
-          />
-          <button
-            type="submit"
-            className="px-5 py-3 rounded-lg bg-green-400 text-black font-bold hover:opacity-90 transition"
-          >
-            Subscribe
-          </button>
-        </form>
+            <form
+              onSubmit={(e) => {
+                e.preventDefault();
+                const email = e.target.email.value;
+                alert(`Subscribed: ${email}`);
+                e.target.reset();
+              }}
+              className="w-full md:w-[420px]"
+            >
+              <div className="flex flex-col sm:flex-row gap-3">
+                <input
+                  name="email"
+                  type="email"
+                  required
+                  placeholder="you@example.com"
+                  className="flex-1 px-4 py-3 rounded-lg bg-[#0b0f17] border border-white/10 outline-none focus:border-green-400"
+                />
+                <button className="px-5 py-3 rounded-lg bg-green-400 text-black font-bold hover:opacity-90 transition">
+                  Subscribe
+                </button>
+              </div>
+              <p className="text-xs text-gray-500 mt-2">
+                By subscribing, you agree to receive updates from Gamehub.
+              </p>
+            </form>
+          </div>
+        </div>
       </section>
     </div>
   );
