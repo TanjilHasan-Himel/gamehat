@@ -1,5 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainLayout from "../layouts/MainLayout";
+import PrivateRoute from "./PrivateRoute";
 
 import Home from "../pages/Home";
 import Games from "../pages/Games";
@@ -27,6 +28,9 @@ const router = createBrowserRouter([
       { path: "/my-profile", element: <MyProfile /> },
       { path: "/update-profile", element: <UpdateProfile /> },
       { path: "/game/:id", element: <GameDetails /> },
+      { path: "/my-profile", element: <PrivateRoute><MyProfile /></PrivateRoute> },
+{ path: "/update-profile", element: <PrivateRoute><UpdateProfile /></PrivateRoute> },
+{ path: "/game/:id", element: <PrivateRoute><GameDetails /></PrivateRoute> },
     ],
   },
 ]);

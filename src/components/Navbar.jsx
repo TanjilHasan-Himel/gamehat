@@ -1,4 +1,6 @@
-import { NavLink, Link } from "react-router-dom";
+import { useContext } from "react";
+import { NavLink, Link, useNavigate } from "react-router-dom";
+import { AuthContext } from "../providers/AuthProvider";
 
 const navClass = ({ isActive }) =>
   `px-3 py-2 rounded-md text-sm font-semibold transition ${
@@ -6,6 +8,14 @@ const navClass = ({ isActive }) =>
   }`;
 
 export default function Navbar() {
+  const { user, logOut } = useContext(AuthContext);
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    await logOut();
+    navigate("/");
+  };
+
   return (
     <header className="sticky top-0 z-50 bg-[#0b0f17]/90 backdrop-blur border-b border-white/10">
       <div className="max-w-6xl mx-auto px-4 md:px-10 h-16 flex items-center justify-between">
@@ -21,12 +31,34 @@ export default function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <div className="hidden sm:flex items-center gap-2">
-            <NavLink to="/login" className={navClass}>Login</NavLink>
-            <NavLink to="/register" className={navClass}>Register</NavLink>
-          </div>
+          {!user ? (
+            <div className="hidden sm:flex items-center gap-2">
+              <NavLink to="/login" className={navClass}>Login</NavLink>
+              <NavLink to="/register" className={navClass}>Register</NavLink>
+            </div>
+          ) : (
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => navigate("/my-profile")}
+                className="w-9 h-9 rounded-full overflow-hidden border border-white/10"
+                title={user?.displayName || "My Profile"}
+              >
+                <img
+                  className="w-full h-full object-cover"
+                  src={user?.photoURL || "https://i.ibb.co/2kRZfQF/user.png"}
+                  alt="user"
+                />
+              </button>
+              <button
+                onClick={handleLogout}
+                className="px-3 py-2 rounded-md bg-green-400 text-black font-bold hover:opacity-90 transition"
+              >
+                Logout
+              </button>
+            </div>
+          )}
 
-          {/* Mobile */}
+          {/* mobile menu */}
           <details className="md:hidden relative">
             <summary className="list-none cursor-pointer px-3 py-2 rounded-md bg-white/10 text-white">
               ☰
@@ -36,8 +68,27 @@ export default function Navbar() {
               <NavLink to="/games" className={({isActive}) => `block ${navClass({isActive})}`}>Games</NavLink>
               <NavLink to="/extra" className={({isActive}) => `block ${navClass({isActive})}`}>Extra</NavLink>
               <div className="my-2 border-t border-white/10" />
-              <NavLink to="/login" className={({isActive}) => `block ${navClass({isActive})}`}>Login</NavLink>
-              <NavLink to="/register" className={({isActive}) => `block ${navClass({isActive})}`}>Register</NavLink>
+              {!user ? (
+                <>
+                  <NavLink to="/login" className={({isActive}) => `block ${navClass({isActive})}`}>Login</NavLink>
+                  <NavLink to="/register" className={({isActive}) => `block ${navClass({isActive})}`}>Register</NavLink>
+                </>
+              ) : (
+                <>
+                  <button
+                    onClick={() => navigate("/my-profile")}
+                    className="block w-full text-left px-3 py-2 rounded-md text-gray-300 hover:bg-white/10 hover:text-white"
+                  >
+                    My Profile
+                  </button>
+                  <button
+                    onClick={handleLogout}
+                    className="mt-2 w-full px-3 py-2 rounded-md bg-green-400 text-black font-bold"
+                  >
+                    Logout
+                  </button>
+                </>
+              )}
             </div>
           </details>
         </div>
